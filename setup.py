@@ -8,4 +8,4 @@ setup(name='hyconpy-util',
       author_email='devrd@hycon.com',
       license='GPL',
       packages=['hyconpy'],
-      zip_safe=False, install_requires=['base58', 'Crypto', 'bitcoin', 'bitcoinlib'])
+      zip_safe=False, install_requires=['base58', 'Crypto', 'bitcoin', 'bitcoinlib', 'secp256k1'])
