@@ -8,7 +8,6 @@ import Crypto.Random
 import Crypto.Cipher.AES
 import bitcoin
 import bitcoinlib
-import hyconpy.mnemonic_hycon
 import hyconpy.tx_pb2
 
 
@@ -189,10 +188,6 @@ def sign_tx_with_hd_wallet(to_address, amount, miner_fee, nonce, private_extende
                    to_address, amount, miner_fee, nonce, private_key)
 
 
-def get_mnemonic(language):
-    return get_bip39_word_list(language)
-
-
 def create_wallet(mnemonic_sentence, passphrase="", language="english"):
     seed = bitcoinlib.mnemonic.Mnemonic(language).to_seed(mnemonic_sentence, passphrase)
     return derive_wallet(seed)
@@ -231,20 +226,6 @@ def derive_wallet(seed, index=0):
 
     return dict(address=address_to_string(public_key_to_address(public_key)),
                 private_key=private_key.hex())
-
-
-def get_bip39_word_list(language="english"):
-    switcher = {
-        "english": mnemonic_hycon.english,
-        "korean": mnemonic_hycon.korean,
-        "chinese_simplified": mnemonic_hycon.chinese_simplified,
-        "chinese_traditional": mnemonic_hycon.chinese_traditional,
-        "japanese": mnemonic_hycon.japanese,
-        "french": mnemonic_hycon.french,
-        "spanish": mnemonic_hycon.spanish,
-        "italian": mnemonic_hycon.italian
-    }
-    return switcher[language]
 
 
 def check_public_key(public_key, private_key):
